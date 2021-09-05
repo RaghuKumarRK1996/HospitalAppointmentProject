@@ -1,0 +1,47 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Bootstrap Cdns ---------->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+</head>
+<body>
+<nav class="main-navigation">
+    <div class="navbar-header animated fadeInUp">
+        <a class="navbar-brand" href="#"><img src="{% static "images/logo.jpg" %}"
+                                              style="width: 70px;height:70px">Logo here</a>
+    </div>
+    <ul class="nav-list">
+        {% if user.is_authenticated %}
+            <li class="nav-list-item">
+                Hello <span style="color: orangered">{{ request.user }}</span>
+            </li>
+            <li class="nav-list-item">
+                <a href="{% url "logout" %}" class="nav-link">
+                    <button class="btn btn-danger">logout</button>
+                </a>
+            </li>
+        {% else %}
+            <li class="nav-list-item">
+                <a href="{% url 'login' %}" class="nav-link">
+                    <button class="btn btn-success">Login</button>
+                </a>
+            </li>
+        {% endif %}
+        <li class="nav-list-item">
+            <a href="#" class="nav-link"></a>
+        </li>
+    </ul>
+</nav>
+{% block content %}
+{% endblock %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"></script>
+</body>
+</html>
